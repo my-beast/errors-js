@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@mybeast/errors demo</title>
+    <!-- Local check of the SDK against a running service: serve this folder's parent (php -S 127.0.0.1:8005 -t js), open demo.html?key=<public key>,
+         list http://localhost:8005 as an origin of the project, then press the buttons. -->
+</head>
+<body>
+    <h1>@mybeast/errors demo</h1>
+    <p><button id="save">Save</button> <button id="boom">Throw an error</button> <button id="reject">Reject a promise</button></p>
+    <p>Reference: <output id="ref">-</output></p>
+    <script type="module">
+        import { init, createErrorReporter } from '../src/index.js';
+
+        const client = init({ url: 'http://localhost:8004', key: new URLSearchParams(location.search).get('key') ?? '', env: 'local', release: 'demo-1' });
+        const errors = createErrorReporter(client, {
+            currentPage: () => 'examples/demo',
+            maskLabel: (text) => (['Save', 'Throw an error'].includes(text) ? text : text.replace(/[\p{L}\p{N}]/gu, '*')),
+            onReported: ({ reference }) => (document.getElementById('ref').textContent = reference),
+        });
+        errors.install();
+
+        document.getElementById('boom').addEventListener('click', () => {
+            setTimeout(() => { throw new TypeError("Cannot read properties of undefined (reading 'rent')"); });
+        });
+        document.getElementById('reject').addEventListener('click', () => Promise.reject(new Error('Request failed with status code 500')));
+    </script>
+</body>
+</html>
