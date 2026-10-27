@@ -13,7 +13,7 @@
     <script type="module">
         import { init, createErrorReporter } from '../src/index.js';
 
-        const client = init({ url: 'http://localhost:8004', key: new URLSearchParams(location.search).get('key') ?? '', env: 'local', release: 'demo-1' });
+        const client = init({ url: 'http://localhost:8024/errors', key: new URLSearchParams(location.search).get('key') ?? '', env: 'local', release: 'demo-1' });
         const errors = createErrorReporter(client, {
             currentPage: () => 'examples/demo',
             maskLabel: (text) => (['Save', 'Throw an error'].includes(text) ? text : text.replace(/[\p{L}\p{N}]/gu, '*')),

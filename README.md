@@ -1,8 +1,8 @@
 # @mybeast/errors
 
-The browser SDK of **errors.my-beast.com**: uncaught errors, unhandled rejections and React's own, with a breadcrumb
-trail of clicks and page changes. It is plain ES modules, with no framework and no build step. Session recording is a
-separate product: `@mybeast/sessions`.
+The browser SDK of **Errors** (services.my-beast.com/errors): uncaught errors, unhandled rejections and React's own,
+with a breadcrumb trail of clicks and page changes. It is plain ES modules, with no framework and no build step.
+Session recording is a separate product: `@mybeast/sessions`.
 
 ```js
 import { init, createErrorReporter } from '@mybeast/errors';
@@ -33,11 +33,11 @@ errors.install();                                     // once, before the app re
 - **A crash loop** sends at most 10 reports per page load, repeats are sent once, and known noise (extensions,
   `ResizeObserver`) is dropped.
 
-**Try it against a local service:**
+**Try it against Errors locally** (http://localhost:8024/errors):
 1. `php -S 127.0.0.1:8005 -t js`
 2. List `http://localhost:8005` as an origin of the project.
 3. Open `examples/demo.html?key=<public key>`.
 
 ```bash
-npm install && npm test   # node --test; schemas/ must equal the service's (when it sits beside this)
+npm install && npm test   # node --test; schemas/ must equal services/schemas/errors (when services/ is there)
 ```
