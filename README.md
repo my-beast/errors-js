@@ -24,6 +24,12 @@ errors.install();                                     // once, before the app re
 // After a new page's props: client.setToken(newToken)
 ```
 
+**A page left open stays someone's.** A token lives 30 minutes (`token_ttl`). Two minutes before it runs out, and when
+the tab comes back into view, the client asks for a fresh one: from `token_url` in the config (mybeast/errors-laravel
+adds `GET /mybeast/errors/token`, where the person's own session decides who), or from your own
+`init(config, { getToken: async () => token })`. Nobody signed in any more (204, or `null`): the page goes on as a
+guest. The token address must be a path on the page's own origin, because the session cookie goes with it.
+
 **What leaves the page:**
 - **Fail closed:** a pressed control's label leaves starred unless `maskLabel` keeps it. Links leave only their
   path, never the query.

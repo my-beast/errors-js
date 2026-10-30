@@ -1,7 +1,7 @@
 {
     "name": "@mybeast/errors",
     "version": "0.1.0",
-    "description": "Browser SDK for errors.my-beast.com: your pages' errors, sent with a keepalive request.",
+    "description": "Browser SDK for MyBeast Errors (services.my-beast.com/errors): your pages' errors, sent with a keepalive request.",
     "private": true,
     "type": "module",
     "exports": {

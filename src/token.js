@@ -1,6 +1,7 @@
 // Client tokens (schemas/v1/client-token.schema.json): the host's server signs them; the browser only carries them
-// and reads two things - who it is for, and when it runs out - to ask the host for a fresh one in time (P2's
-// getToken hook). Nothing here verifies a signature: the browser never holds the key, the service checks.
+// and reads two things - who it is for, and when it runs out - to ask the host for a fresh one in time (client.js:
+// getToken, or the config's token_url). Nothing here verifies a signature: the browser never holds the key, the
+// service checks.
 
 /** The claims of a token, or null when it is not a readable JWT. */
 export function readClaims(token) {
