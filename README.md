@@ -4,6 +4,16 @@ The browser SDK of **Errors** (services.my-beast.com/errors): uncaught errors, u
 with a breadcrumb trail of clicks and page changes. It is plain ES modules, with no framework and no build step.
 Session recording is a separate product: `@mybeast/sessions`.
 
+## Install
+
+```bash
+npm install @mybeast/errors
+```
+
+Its types are in the package (`types/index.d.ts`). The config comes from your server: mybeast/errors-laravel.
+
+## Use
+
 ```js
 import { init, createErrorReporter } from '@mybeast/errors';
 
@@ -45,5 +55,12 @@ guest. The token address must be a path on the page's own origin, because the se
 3. Open `examples/demo.html?key=<public key>`.
 
 ```bash
-npm install && npm test   # node --test; schemas/ must equal services/schemas/errors (when services/ is there)
+npm install && npm test && npm run test:types   # node --test, then tsc on test-d/; schemas/ must equal services/schemas/errors (when services/ is there)
 ```
+
+## Releasing
+
+Set `version` in `package.json`, add it to `CHANGELOG.md`, then tag it: `git tag v0.2.0 && git push --tags`. The
+Publish workflow checks that the tag is the version, runs the tests and publishes to npm through npm's trusted
+publishing (no token stored anywhere). The first version goes by hand: `npm publish --access public`, with the npm
+organisation's two-factor code; then the package's settings on npmjs.com name this repository's `publish.yml`.

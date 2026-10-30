@@ -1,9 +1,9 @@
-// Browser errors (ported from Asuvaan's lib/errorReporter.js): uncaught errors, unhandled rejections and React's own,
+// Browser errors: uncaught errors, unhandled rejections and React's own,
 // sent to the service as they happen - POST /v1/browser-errors, a CORS-simple request that rides keepalive, so a
 // report survives the page crashing or unloading. Fire and forget: it never throws and never retries.
 //
 // Privacy, fail closed: breadcrumbs carry paths (never queries) and pressed controls' labels; a label leaves starred
-// unless the host gives `maskLabel` (Asuvaan keeps its own UI words readable and stars everything else), and inside
+// unless the host gives `maskLabel` (keeping its own UI words readable and starring everything else, say), and inside
 // `privateSelector` it always leaves starred - an aria-label built from a person's name is that person's.
 
 import { simplePost } from './transport.js';

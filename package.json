@@ -2,19 +2,49 @@
     "name": "@mybeast/errors",
     "version": "0.1.0",
     "description": "Browser SDK for MyBeast Errors (services.my-beast.com/errors): your pages' errors, sent with a keepalive request.",
-    "private": true,
+    "license": "MIT",
+    "keywords": [
+        "mybeast",
+        "errors",
+        "error-tracking",
+        "browser",
+        "monitoring"
+    ],
+    "homepage": "https://github.com/my-beast/errors-js#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/my-beast/errors-js.git"
+    },
+    "bugs": {
+        "url": "https://github.com/my-beast/errors-js/issues"
+    },
+    "author": "MyBeast (https://my-beast.com)",
     "type": "module",
     "exports": {
-        ".": "./src/index.js"
+        ".": {
+            "types": "./types/index.d.ts",
+            "default": "./src/index.js"
+        },
+        "./package.json": "./package.json"
     },
-    "files": ["src", "schemas"],
+    "types": "./types/index.d.ts",
+    "files": [
+        "src",
+        "schemas",
+        "types"
+    ],
     "scripts": {
-        "test": "node --test"
+        "test": "node --test",
+        "test:types": "tsc -p test-d"
     },
     "devDependencies": {
-        "ajv": "8.17.1"
+        "ajv": "8.17.1",
+        "typescript": "7.0.2"
     },
     "engines": {
         "node": ">=20"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
