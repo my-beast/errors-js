@@ -1,6 +1,6 @@
 {
     "name": "@mybeast/errors",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Browser SDK for My Beast Errors (services.my-beast.com/errors): your pages' errors, sent with a keepalive request.",
     "license": "MIT",
     "keywords": [
