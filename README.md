@@ -49,8 +49,8 @@ guest. The token address must be a path on the page's own origin, because the se
 - **A crash loop** sends at most 10 reports per page load, repeats are sent once, and known noise (extensions,
   `ResizeObserver`) is dropped.
 
-**Try it against Errors locally** (http://localhost:8024/errors):
-1. `php -S 127.0.0.1:8005 -t js`
+**Try it against a local Errors** (My Beast's own checkout, where Errors runs at http://localhost:8024/errors):
+1. `php -S 127.0.0.1:8005` in this folder
 2. List `http://localhost:8005` as an origin of the project.
 3. Open `examples/demo.html?key=<public key>`.
 
@@ -61,6 +61,8 @@ npm install && npm test && npm run test:types   # node --test, then tsc on test-
 ## Releasing
 
 Set `version` in `package.json`, add it to `CHANGELOG.md`, then tag it: `git tag v0.2.0 && git push --tags`. The
-Publish workflow checks that the tag is the version, runs the tests and publishes to npm through npm's trusted
-publishing (no token stored anywhere). The first version goes by hand: `npm publish --access public`, with the npm
-organisation's two-factor code; then the package's settings on npmjs.com name this repository's `publish.yml`.
+Publish workflow checks that the tag is the version, runs the tests and stages it on npm through npm's trusted
+publishing (no token stored anywhere). It goes live when a maintainer approves it with the npm organisation's
+two-factor code: the package's Staged Packages tab on npmjs.com, or `npm stage approve <id>`. The first version went by
+hand (`npm publish --access public`); then the package's settings on npmjs.com named this repository's `publish.yml`
+as its trusted publisher, allowed to stage only.
